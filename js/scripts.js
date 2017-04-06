@@ -1,3 +1,27 @@
+function Board(){
+  this.board= [[0,0,0],
+              [0,0,0],
+              [0,0,0]]
+  this.winnerName;
+}
+
+Board.prototype.winner = function() {
+  for (var k=0; k<3; k++) {
+    if ((this.board[k][k]==="X") && (this.board[k][k+1]==="X") && (this.board[k][k+2]=== "X"))
+    {
+      alert ("you win!");
+      this.winnerName = "X";
+      return true;
+    }
+    else if ((this.board[k][k]==="X") && (this.board[k+1][k]==="X") && (this.board[k+2][k] === "X"))
+    {
+      alert ("you win!");
+      this.winnerName = "X";
+      return true;
+    }
+  }
+}
+
 $(document).ready(function(){
   var counter = 0;
   var player;
@@ -5,9 +29,8 @@ $(document).ready(function(){
   var oClickArray = [];
   var xClickId = "";
   var xClickArray = [];
-  var board = [[0,0,0],
-              [0,0,0],
-              [0,0,0]]
+  var newBoard = new Board();
+
   $(".matrix").click(function(event) {
    $(event.currentTarget).attr('id');
     var clickId = event.currentTarget.id;
@@ -22,20 +45,18 @@ $(document).ready(function(){
     if (counter %2 === 0)
     {
       player = "O";
-      board[i][j]= "O";
+      newBoard.board[i][j]= "O";
     }
     else
     {
       player = "X";
-      board[i][j]= "X";
+      newBoard.board[i][j]= "X";
     }
 
       $("#"+ clickId).text(player);
       $( "#"+ clickId).unbind( "click" );
-      console.log(board);
-
-
-    // alert ("you clicked me!");
+      console.log(newBoard.board);
+      console.log(newBoard.winner());
   })
 
 });
