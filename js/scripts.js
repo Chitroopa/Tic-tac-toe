@@ -1,17 +1,13 @@
-var counter = 0;
-var player;
-var oClickId = "";
-var oClickArray = [];
-var xClickId = "";
-var xClickArray = [];
-var board = [[0,0,0],
-            [0,0,0],
-            [0,0,0]]
-
 $(document).ready(function(){
-  // $("#00").on("click", "td", function() {
-  //   alert($(this).text());
-  // });
+  var counter = 0;
+  var player;
+  var oClickId = "";
+  var oClickArray = [];
+  var xClickId = "";
+  var xClickArray = [];
+  var board = [[0,0,0],
+              [0,0,0],
+              [0,0,0]]
   $(".matrix").click(function(event) {
    $(event.currentTarget).attr('id');
     var clickId = event.currentTarget.id;
@@ -35,6 +31,7 @@ $(document).ready(function(){
     }
 
       $("#"+ clickId).text(player);
+      $( "#"+ clickId).unbind( "click" );
       console.log(board);
 
 
